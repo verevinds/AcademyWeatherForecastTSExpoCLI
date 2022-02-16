@@ -2,10 +2,11 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   Weather__slider: {
-    marginLeft: 24,
+    paddingHorizontal: 12,
+    flex:1
   },
   Weather__containerTile: {
-    marginRight: 24,
+    marginHorizontal: 12,
     width: 222,
     flex: 1,
     justifyContent: 'space-between',
