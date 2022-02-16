@@ -1,3 +1,4 @@
+import {useModal} from 'hooks/useModal';
 import {DateTime} from 'luxon';
 import React, {useEffect, useState} from 'react';
 import {
@@ -9,7 +10,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import DatePickerComponent from 'react-native-date-picker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './datepicker.styles';
 
 type DatePicker = {
@@ -18,20 +19,14 @@ type DatePicker = {
 };
 const DatePicker = ({style, onChangeDate}: DatePicker): JSX.Element => {
   const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  const datePickerModal = useModal();
 
-  const onPress = () => {
-    setOpen(true);
-  };
-  const onConfirm = (value: Date) => {
-    setOpen(false);
-    setDate(value);
-    if (onChangeDate) {
-      onChangeDate(value);
-    }
-  };
-  const onCancel = () => {
-    setOpen(false);
+  const onChange = (selectedDate: Date) => {
+    datePickerModal.close();
+    setDate(selectedDate);
+
+    if (!onChangeDate) return;
+    onChangeDate(selectedDate);
   };
 
   useEffect(() => {
@@ -44,7 +39,15 @@ const DatePicker = ({style, onChangeDate}: DatePicker): JSX.Element => {
     <ImageBackground
       style={[styles.Datepicker__imageBackground, style]}
       source={require('assets/date-place.png')}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={datePickerModal.open}>
+        <DateTimePickerModal
+          isVisible={datePickerModal.isOpen}
+          onCancel={datePickerModal.close}
+          mode="date"
+          onConfirm={onChange}
+          maximumDate={new Date()}
+          minimumDate={DateTime.now().minus({week: 1}).toJSDate()}
+        />
         <View style={styles.Datepicker__textContainer}>
           {date ? (
             <View style={styles.Datepicker__dateTextContainer}>
@@ -62,16 +65,6 @@ const DatePicker = ({style, onChangeDate}: DatePicker): JSX.Element => {
           )}
         </View>
       </TouchableOpacity>
-      <DatePickerComponent
-        modal
-        mode="date"
-        minimumDate={DateTime.now().minus({week: 1}).toJSDate()}
-        maximumDate={new Date()}
-        open={open}
-        date={date}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-      />
     </ImageBackground>
   );
 };
