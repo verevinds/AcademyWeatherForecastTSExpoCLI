@@ -3,8 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   Board__inputBlock: {
     flexDirection: 'row',
-    marginLeft: 24,
-    marginRight: 24,
+    marginHorizontal: 24,
     marginVertical: 24,
   },
   Board__select: {

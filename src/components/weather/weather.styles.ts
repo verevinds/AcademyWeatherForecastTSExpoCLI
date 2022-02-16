@@ -16,8 +16,7 @@ export default StyleSheet.create({
   Weather__inputBlock: {
     flexDirection: 'row',
     backgroundColor: 'rgba(128, 131, 164, 0.06)',
-    marginLeft: 24,
-    marginRight: 24,
+    marginHorizontal: 24,
     justifyContent: 'flex-start',
     marginVertical: 24,
     borderColor: 'rgba(128, 131, 164, 0.2)',
