@@ -2,7 +2,7 @@ import Button from 'components/button/button';
 import React, {useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import {Arrow} from 'components/arrow/arrow';
+import ChevronDown from 'assets/chevron-down.svg';
 import cities from 'constants/cities';
 import boardMessage from './board.message';
 import Weather from 'components/weather/weather';
@@ -64,7 +64,7 @@ const Board = (): JSX.Element => {
             <RNPickerSelect
               onValueChange={handleSelect}
               placeholder={{label: 'City...', value: 'City...'}}
-              Icon={Arrow}
+              Icon={ChevronDown}
               style={{
                 iconContainer: styles.Board__selectIconContainer,
                 viewContainer: styles.Board__selectViewContainer,

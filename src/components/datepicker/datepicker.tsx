@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './datepicker.styles';
+import DataPlace from 'assets/date-place.svg';
 
 type DatePicker = {
   style: ViewStyle | TextStyle | ImageStyle;
@@ -36,9 +37,8 @@ const DatePicker = ({style, onChangeDate}: DatePicker): JSX.Element => {
   }, [onChangeDate, date]);
 
   return (
-    <ImageBackground
-      style={[styles.Datepicker__imageBackground, style]}
-      source={require('assets/date-place.png')}>
+    <View style={[styles.Datepicker__imageBackground, style]}>
+      <DataPlace style={styles.Datepicker__image} />
       <TouchableOpacity onPress={datePickerModal.open}>
         <DateTimePickerModal
           isVisible={datePickerModal.isOpen}
@@ -65,7 +65,7 @@ const DatePicker = ({style, onChangeDate}: DatePicker): JSX.Element => {
           )}
         </View>
       </TouchableOpacity>
-    </ImageBackground>
+    </View>
   );
 };
 

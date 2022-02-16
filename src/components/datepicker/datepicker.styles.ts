@@ -5,6 +5,7 @@ export default StyleSheet.create({
     width: 44,
     height: 48,
   },
+  Datepicker__image: {position:'absolute'},
   Datepicker__textContainer: {height: '100%', alignItems: 'center'},
   Datepicker__dateTextContainer: {position: 'absolute', bottom: 4},
   Datepicker__dateDay: {textAlign: 'center', fontSize: 14},
